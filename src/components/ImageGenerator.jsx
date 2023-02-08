@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ParticleBackground from "react-particle-backgrounds";
-import { toast } from "react-toastify";
+import { toast, Flip} from "react-toastify";
 
 
 
@@ -47,16 +47,17 @@ function ImageGenerator() {
     size === "small" ? "256x256" : size === "medium" ? "512x512" : "1024x1024";
 
 const generateImage = async () => {
-    const id = toast("Creating Image...", {
+    const id = toast.loading("Creating Image...", {
       theme: "colored",
       autoClose: 6000,
       type: "success",
       position: toast.POSITION.BOTTOM_CENTER,
       hideProgressBar: false,
+      transition: Flip,
     });
     try {
       const response = await axios.post(
-        `https://api.openai.com/v1/images/generations?prompt=${prompt}&size=${size}`,
+        `https://api.openai.com/v1/images/generatons?prompt=${prompt}&size=${size}`,
         {
           prompt: prompt,
         },
@@ -73,15 +74,15 @@ const generateImage = async () => {
       );
         toast.update(id, {
           render: "Image Created",
-          type: "success",
+          type: "info",
           isLoading: false,
+          hideProgressBar: false,
           theme: "dark",
-          autoClose: 3000,
+          autoClose: 1500,
+          className: "rotateY animated",
         });
         setLoading(false)
         setImageUrl(response.data.data[0].url); 
-        prompt("")
-        size("")
     } catch(error) {
       console.error(error);
        toast.update("Problem with Api Endpoint", {
