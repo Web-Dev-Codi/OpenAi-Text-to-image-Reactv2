@@ -57,7 +57,7 @@ const generateImage = async () => {
     });
     try {
       const response = await axios.post(
-        `https://api.openai.com/v1/images/generatons?prompt=${prompt}&size=${size}`,
+        `https://api.openai.com/v1/images/generations?prompt=${prompt}&size=${size}`,
         {
           prompt: prompt,
         },
