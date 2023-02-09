@@ -63,6 +63,7 @@ const generateImage = async () => {
         },
         {
           headers: {
+            "Access-Control-Allow-Origin": "*",
             Authorization: "Bearer " + apiKey,
             "Content-Type": "application/json",
           },
