@@ -12,7 +12,7 @@ function ImageGenerator() {
   const [imageUrl, setImageUrl] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey = process.env.OPEN_AI_API_KEY;
 
 
   const settings = {
@@ -57,22 +57,23 @@ const generateImage = async () => {
     });
     try {
       const response = await axios.post(
-        `https://api.openai.com/v1/images/generations?prompt=${prompt}&size=${size}`,
-        {
-          prompt: prompt,
-        },
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            Authorization: "Bearer " + apiKey,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt,
-            size: imageSize,
-           }), 
-        }
-      );
+			`https://api.openai.com/v1/images/generations?prompt=${prompt}&size=${size}`,
+			{
+				prompt: prompt,
+			},
+			{
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					Authorization:
+						"Bearer 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",
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					prompt,
+					size: imageSize,
+				}),
+			}
+		);
         toast.update(id, {
           render: "Image Created",
           type: "info",
@@ -134,7 +135,7 @@ const generateImage = async () => {
               onChange={(e) => setSize(e.target.value)}
             >
               <option value="small">Small</option>
-              <option value="medium" selected>
+              <option value="medium" defaultValue>
                 Medium
               </option>
               <option value="large">Large</option>
