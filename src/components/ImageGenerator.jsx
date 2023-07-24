@@ -12,7 +12,7 @@ function ImageGenerator() {
   const [imageUrl, setImageUrl] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const apiKey = process.env.OPEN_AI_API_KEY;
+  // const apiKey = process.env.OPEN_AI_API_KEY;
 
 
   const settings = {
@@ -64,8 +64,7 @@ const generateImage = async () => {
 			{
 				headers: {
 					"Access-Control-Allow-Origin": "*",
-					Authorization:
-						"Bearer" + apiKey,
+					Authorization: `Bearer ${process.env.REACT_APP_OPEN_AI_API_KEY}`,
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({
@@ -158,7 +157,7 @@ const generateImage = async () => {
                   src={imageUrl}
                   alt=""
                   id="image"
-                  class="mx-auto  max-h-[700px]"
+                  className="mx-auto  max-h-[700px]"
                 />
               </div>
             </section>
