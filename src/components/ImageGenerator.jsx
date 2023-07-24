@@ -115,11 +115,11 @@ const generateImage = async () => {
           className="flex flex-col items-center mb-5"
         >
           <h1 className="text-center px-4 font-sans text-white text-3xl underline mb-5">
-            Describe An Image
+            Describe An Image for Generation
           </h1>
           <div className="form-control text-lg rounded-md  mb-4">
             <input
-              className="input text-sm underline decoration-green-500 text-yellow-300 input-accent font-bold italic w-60 max-w-xs font-mono"
+              className="input text-sm text-yellow-300 input-accent font-bold italic w-60 max-w-xs font-mono"
               type="text"
               placeholder="Enter Text To Be Generated"
               onChange={handleChange}
